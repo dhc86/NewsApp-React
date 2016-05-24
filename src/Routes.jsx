@@ -9,10 +9,10 @@ var History = new CreateHistory({
   queryKey: false
 });
 
-var Landing = require('./components/Landing.jsx');
-var Photos = require('./components/photos.jsx');
-var About = require('./components/About.jsx');
-var News = require('./components/News.jsx');
+var Landing = require('./components/landing/Landing.jsx');
+var Photos = require('./components/photos/Photos.jsx');
+var About = require('./components/about/About.jsx');
+var News = require('./components/news/News.jsx');
 
 var Routes = (
   <Router history={History}>

@@ -24800,10 +24800,10 @@ var History = new CreateHistory({
   queryKey: false
 });
 
-var Landing = require('./components/Landing.jsx');
-var Photos = require('./components/photos.jsx');
-var About = require('./components/About.jsx');
-var News = require('./components/News.jsx');
+var Landing = require('./components/landing/Landing.jsx');
+var Photos = require('./components/photos/Photos.jsx');
+var About = require('./components/about/About.jsx');
+var News = require('./components/news/News.jsx');
 
 var Routes = React.createElement(
   Router,
@@ -24819,7 +24819,7 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/About.jsx":230,"./components/Landing.jsx":231,"./components/News.jsx":232,"./components/photos.jsx":233,"history/lib/createHashHistory":38,"react":226,"react-router":81}],230:[function(require,module,exports){
+},{"./components/about/About.jsx":230,"./components/landing/Landing.jsx":231,"./components/news/News.jsx":236,"./components/photos/Photos.jsx":239,"history/lib/createHashHistory":38,"react":226,"react-router":81}],230:[function(require,module,exports){
 var React = require('react');
 
 var About = React.createClass({
@@ -24849,7 +24849,7 @@ var Landing = React.createClass({
       React.createElement(
         'h1',
         null,
-        'Welcome to my page! this shoud be the nav bar!'
+        'Nav bar here'
       ),
       this.props.children,
       React.createElement(
@@ -24866,21 +24866,184 @@ module.exports = Landing;
 },{"react":226}],232:[function(require,module,exports){
 var React = require('react');
 
+//Here is some content about the news. This will display as a paragraph where all the information is displayed in this text. For more information please google the news title. You will find some articles related to this new. Or for a better user experience use Youtube where you will be able to search this title , find a video and play the video for free!. Good luck
+var Content = React.createClass({
+  displayName: 'Content',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'p',
+        null,
+        this.props.content
+      )
+    );
+  }
+});
+
+module.exports = Content;
+
+},{"react":226}],233:[function(require,module,exports){
+var React = require('react');
+
+var Image = React.createClass({
+  displayName: "Image",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement("img", { src: this.props.image, alt: "" })
+    );
+  }
+});
+
+module.exports = Image;
+
+},{"react":226}],234:[function(require,module,exports){
+var React = require('react');
+var Image = require('./Image.jsx');
+
+var ImagesList = React.createClass({
+  displayName: 'ImagesList',
+
+  render: function () {
+
+    var createItem = function (item) {
+      return React.createElement(Image, { image: item.image });
+    };
+
+    return React.createElement(
+      'div',
+      null,
+      this.props.imagesArr.map(createItem)
+    );
+  }
+});
+
+module.exports = ImagesList;
+
+},{"./Image.jsx":233,"react":226}],235:[function(require,module,exports){
+var React = require('react');
+
+var Location = React.createClass({
+  displayName: 'Location',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'p',
+        null,
+        this.props.location
+      )
+    );
+  }
+});
+
+module.exports = Location;
+
+},{"react":226}],236:[function(require,module,exports){
+var React = require('react');
+var SubTitle = require('./Subtitle.jsx');
+var Content = require('./Content.jsx');
+var ImagesList = require('./ImagesList.jsx');
+var Location = require('./Location.jsx');
+var Title = require('./Title.jsx');
+
 var News = React.createClass({
   displayName: 'News',
 
   render: function () {
+
+    var news = [{
+      title: "Champions League Final",
+      subtitle: "Where to watch the 2015/16 Champions League final",
+      content: "Fans all over the world will have no need to miss a single minute of the action in the 2015/16 UEFA Champions League final as Real Madrid take on city rivals Atlético. The UEFA Champions League's extensive network of broadcast partners will be bringing the final between Real Madrid and Atlético into millions of homes across the world. An estimated global audience of 180 million watched last season's decider between Barcelona and Juventus, with a second all-Madrid encounter set to captivate the globe once more.",
+      images: [{ image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/DomesticLeague/02/36/43/83/2364383_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/General/01/92/20/62/1922062_w2.jpg" }],
+      location: "Milan, Italy"
+    }];
+
+    var callTitle = news.map(function (item) {
+      return React.createElement(Title, { title: item.title });
+    });
+
+    var callSubtitle = news.map(function (item) {
+      return React.createElement(SubTitle, { subtitle: item.subtitle });
+    });
+
+    var callContent = news.map(function (item) {
+      return React.createElement(Content, { content: item.content });
+    });
+
+    var callLocation = news.map(function (item) {
+      return React.createElement(Location, { location: item.location });
+    });
+
+    var callImagesList = news.map(function (item) {
+      return React.createElement(ImagesList, { imagesArr: item.images });
+    });
+
     return React.createElement(
-      'h2',
+      'div',
       null,
-      'News!!!'
+      callTitle,
+      callSubtitle,
+      callContent,
+      callImagesList,
+      callLocation
     );
   }
 });
 
 module.exports = News;
 
-},{"react":226}],233:[function(require,module,exports){
+},{"./Content.jsx":232,"./ImagesList.jsx":234,"./Location.jsx":235,"./Subtitle.jsx":237,"./Title.jsx":238,"react":226}],237:[function(require,module,exports){
+var React = require('react');
+
+var SubTitle = React.createClass({
+  displayName: 'SubTitle',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'h2',
+        null,
+        this.props.subtitle
+      )
+    );
+  }
+});
+
+module.exports = SubTitle;
+
+},{"react":226}],238:[function(require,module,exports){
+var React = require('react');
+
+var Title = React.createClass({
+  displayName: 'Title',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'h1',
+        null,
+        this.props.title
+      )
+    );
+  }
+});
+
+module.exports = Title;
+
+},{"react":226}],239:[function(require,module,exports){
 var React = require('react');
 
 var Photos = React.createClass({
@@ -24897,11 +25060,12 @@ var Photos = React.createClass({
 
 module.exports = Photos;
 
-},{"react":226}],234:[function(require,module,exports){
+},{"react":226}],240:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
-ReactDOM.render(Routes, document.getElementById('ingredients'));
+ReactDOM.render(Routes, document.getElementById('news'));
+ReactDOM.render(Routes, document.getElementById('news2'));
 
-},{"./Routes.jsx":229,"react":226,"react-dom":51}]},{},[234]);
+},{"./Routes.jsx":229,"react":226,"react-dom":51}]},{},[240]);
