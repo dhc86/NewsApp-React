@@ -24819,30 +24819,146 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/about/About.jsx":230,"./components/landing/Landing.jsx":231,"./components/news/News.jsx":236,"./components/photos/Photos.jsx":239,"history/lib/createHashHistory":38,"react":226,"react-router":81}],230:[function(require,module,exports){
+},{"./components/about/About.jsx":230,"./components/landing/Landing.jsx":235,"./components/news/News.jsx":240,"./components/photos/Photos.jsx":244,"history/lib/createHashHistory":38,"react":226,"react-router":81}],230:[function(require,module,exports){
 var React = require('react');
+var Name = require('./Name.jsx');
+var Summary = require('./Summary.jsx');
+var ProjectList = require('./ProjectList.jsx');
 
 var About = React.createClass({
   displayName: 'About',
 
   render: function () {
+
+    var developerInfo = [{ name: "Diego Herrera",
+      summary: "Engineer with a passion for web application technologies. I am looking to join and grow in a dynamic, innovative and supportive team where I can learn and contribute using my analytical thinking, management experience and web development skills.",
+      projects: [{ project: { title: "Savebook", url: "http://savebook.herokuapp.com" } }, { project: { title: "MYMusic", url: "https://mymusic-dhc.herokuapp.com/" } }, { project: { title: "TRAILIX", url: "https://trailix.herokuapp.com/" } }, { project: { title: "Solo Shoppers", url: "http://www.soloshoppers.ca" } }]
+    }];
+
+    var callName = developerInfo.map(function (item) {
+      return React.createElement(Name, { name: item.name });
+    });
+
+    var callSummary = developerInfo.map(function (item) {
+      return React.createElement(Name, { name: item.summary });
+    });
+
+    var callProjects = developerInfo.map(function (item) {
+      return React.createElement(ProjectList, { projectsArr: item.projects });
+    });
+
     return React.createElement(
-      'h2',
+      'div',
       null,
-      'About!!!'
+      callName,
+      callSummary,
+      callProjects
     );
   }
 });
 
 module.exports = About;
 
-},{"react":226}],231:[function(require,module,exports){
+},{"./Name.jsx":231,"./ProjectList.jsx":233,"./Summary.jsx":234,"react":226}],231:[function(require,module,exports){
+var React = require('react');
+
+var Name = React.createClass({
+  displayName: 'Name',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'p',
+        null,
+        this.props.name
+      )
+    );
+  }
+});
+
+module.exports = Name;
+
+},{"react":226}],232:[function(require,module,exports){
+var React = require('react');
+
+var Project = React.createClass({
+  displayName: 'Project',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'p',
+        null,
+        this.props.project.title
+      ),
+      React.createElement(
+        'p',
+        null,
+        this.props.project.url
+      )
+    );
+  }
+});
+
+module.exports = Project;
+
+},{"react":226}],233:[function(require,module,exports){
+var React = require('react');
+var Project = require('./Project.jsx');
+
+var ProjectList = React.createClass({
+  displayName: 'ProjectList',
+
+  render: function () {
+    // projectsArr = [{project:{title:"Savebook", url:"http://savebook.herokuapp.com"}},
+    //                {project:{title:"MYMusic", url:"https://mymusic-dhc.herokuapp.com/"}},
+    //                {project:{title:"TRAILIX", url:"https://trailix.herokuapp.com/"}},
+    //                {project:{title:"Solo Shoppers", url:"http://www.soloshoppers.ca"}}];
+
+    var callProject = function (item) {
+      //this will pass an object with params title and url
+      return React.createElement(Project, { project: item.project });
+    };
+
+    return React.createElement(
+      'div',
+      null,
+      this.props.projectsArr.map(callProject)
+    );
+  }
+});
+
+module.exports = ProjectList;
+
+},{"./Project.jsx":232,"react":226}],234:[function(require,module,exports){
+var React = require('react');
+
+var Summary = React.createClass({
+  displayName: 'Summary',
+
+  render: function () {
+    return React.createElement(
+      'p',
+      null,
+      this.props.summary
+    );
+  }
+});
+
+module.exports = Summary;
+
+},{"react":226}],235:[function(require,module,exports){
 var React = require('react');
 
 var Landing = React.createClass({
   displayName: 'Landing',
 
   render: function () {
+
     return React.createElement(
       'div',
       null,
@@ -24863,7 +24979,7 @@ var Landing = React.createClass({
 
 module.exports = Landing;
 
-},{"react":226}],232:[function(require,module,exports){
+},{"react":226}],236:[function(require,module,exports){
 var React = require('react');
 
 //Here is some content about the news. This will display as a paragraph where all the information is displayed in this text. For more information please google the news title. You will find some articles related to this new. Or for a better user experience use Youtube where you will be able to search this title , find a video and play the video for free!. Good luck
@@ -24885,7 +25001,7 @@ var Content = React.createClass({
 
 module.exports = Content;
 
-},{"react":226}],233:[function(require,module,exports){
+},{"react":226}],237:[function(require,module,exports){
 var React = require('react');
 
 var Image = React.createClass({
@@ -24902,7 +25018,7 @@ var Image = React.createClass({
 
 module.exports = Image;
 
-},{"react":226}],234:[function(require,module,exports){
+},{"react":226}],238:[function(require,module,exports){
 var React = require('react');
 var Image = require('./Image.jsx');
 
@@ -24925,7 +25041,7 @@ var ImagesList = React.createClass({
 
 module.exports = ImagesList;
 
-},{"./Image.jsx":233,"react":226}],235:[function(require,module,exports){
+},{"./Image.jsx":237,"react":226}],239:[function(require,module,exports){
 var React = require('react');
 
 var Location = React.createClass({
@@ -24946,7 +25062,7 @@ var Location = React.createClass({
 
 module.exports = Location;
 
-},{"react":226}],236:[function(require,module,exports){
+},{"react":226}],240:[function(require,module,exports){
 var React = require('react');
 var SubTitle = require('./Subtitle.jsx');
 var Content = require('./Content.jsx');
@@ -25001,7 +25117,7 @@ var News = React.createClass({
 
 module.exports = News;
 
-},{"./Content.jsx":232,"./ImagesList.jsx":234,"./Location.jsx":235,"./Subtitle.jsx":237,"./Title.jsx":238,"react":226}],237:[function(require,module,exports){
+},{"./Content.jsx":236,"./ImagesList.jsx":238,"./Location.jsx":239,"./Subtitle.jsx":241,"./Title.jsx":242,"react":226}],241:[function(require,module,exports){
 var React = require('react');
 
 var SubTitle = React.createClass({
@@ -25022,7 +25138,7 @@ var SubTitle = React.createClass({
 
 module.exports = SubTitle;
 
-},{"react":226}],238:[function(require,module,exports){
+},{"react":226}],242:[function(require,module,exports){
 var React = require('react');
 
 var Title = React.createClass({
@@ -25043,29 +25159,52 @@ var Title = React.createClass({
 
 module.exports = Title;
 
-},{"react":226}],239:[function(require,module,exports){
+},{"react":226}],243:[function(require,module,exports){
 var React = require('react');
+
+var Photo = React.createClass({
+  displayName: "Photo",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement("img", { src: this.props.url, alt: "" })
+    );
+  }
+});
+
+module.exports = Photo;
+
+},{"react":226}],244:[function(require,module,exports){
+var React = require('react');
+var Photo = require('./Photo.jsx');
 
 var Photos = React.createClass({
   displayName: 'Photos',
 
   render: function () {
+    var images = [{ image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/Comp_Matches/02/35/82/45/2358245_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/General/02/28/03/12/2280312_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/DomesticLeague/02/36/69/05/2366905_w2.jpg" }];
+
+    var callPhotos = images.map(function (item) {
+      return React.createElement(Photo, { url: item.image });
+    });
+
     return React.createElement(
-      'h2',
+      'div',
       null,
-      'Photos!!!'
+      callPhotos
     );
   }
 });
 
 module.exports = Photos;
 
-},{"react":226}],240:[function(require,module,exports){
+},{"./Photo.jsx":243,"react":226}],245:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('news'));
-ReactDOM.render(Routes, document.getElementById('news2'));
 
-},{"./Routes.jsx":229,"react":226,"react-dom":51}]},{},[240]);
+},{"./Routes.jsx":229,"react":226,"react-dom":51}]},{},[245]);

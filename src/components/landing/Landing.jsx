@@ -2,6 +2,7 @@ var React = require('react');
 
 var Landing = React.createClass({
   render: function(){
+
     return (
       <div>
         <h1>Nav bar here</h1>
