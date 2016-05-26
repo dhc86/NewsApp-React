@@ -8,7 +8,11 @@ var ImagesList = React.createClass({
       return <Image image={item.image} />
     };
 
-    return (<div>{this.props.imagesArr.map(createItem)}</div>);
+    return (
+      <div>
+        {this.props.imagesArr.map(createItem)}
+      </div>
+    );
   }
 });
 

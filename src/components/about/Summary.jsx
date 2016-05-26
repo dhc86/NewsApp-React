@@ -3,7 +3,9 @@ var React = require('react');
 var Summary = React.createClass({
   render: function(){
     return (
-      <p>{this.props.summary}</p>
+      <div>
+        {this.props.summary}
+      </div>
     );
   }
 });

@@ -36,13 +36,37 @@ var News = React.createClass({
        return <ImagesList imagesArr={item.images} />
      });
 
+     var marginProfileStyle = {
+       marginLeft: 40,
+       marginRight: 40
+     }
+
     return (
-      <div>
-        {callTitle}
-        {callSubtitle}
-        {callContent}
-        {callImagesList}
-        {callLocation}
+      <div className="media">
+        <div className="media-left media-top">
+          <a href="/#/photos">
+            <img style={marginProfileStyle} className="media-object" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/000/26e/2da/37291da.jpg" alt="..." height="80" width="80" />
+          </a>
+        </div>
+
+        <div className="media-body">
+          <h4 classN="media-heading">{callTitle}</h4>
+          <div>
+            {callSubtitle}
+          </div>
+          <div>
+            {callContent}
+          </div>
+          <div>
+            <div className="row">
+                {callImagesList}
+            </div>
+          </div>
+          <div>
+            {callLocation}
+          </div>
+        </div>
+
       </div>
 
     );

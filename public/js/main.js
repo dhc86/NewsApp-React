@@ -24832,7 +24832,7 @@ var About = React.createClass({
 
     var developerInfo = [{ name: "Diego Herrera",
       summary: "Engineer with a passion for web application technologies. I am looking to join and grow in a dynamic, innovative and supportive team where I can learn and contribute using my analytical thinking, management experience and web development skills.",
-      projects: [{ project: { title: "Savebook", url: "http://savebook.herokuapp.com" } }, { project: { title: "MYMusic", url: "https://mymusic-dhc.herokuapp.com/" } }, { project: { title: "TRAILIX", url: "https://trailix.herokuapp.com/" } }, { project: { title: "Solo Shoppers", url: "http://www.soloshoppers.ca" } }]
+      projects: [{ project: { title: "Savebook", url: "http://savebook.herokuapp.com", file: "http://i.imgur.com/UWrrAWS.png" } }, { project: { title: "MYMusic", url: "https://mymusic-dhc.herokuapp.com/", file: "http://i.imgur.com/tvlsWyt.png" } }, { project: { title: "TRAILIX", url: "https://trailix.herokuapp.com/", file: "http://i.imgur.com/e9f3Ao4.png" } }, { project: { title: "Solo Shoppers", url: "http://www.soloshoppers.ca", file: "http://i.imgur.com/N2QROtF.png" } }]
     }];
 
     var callName = developerInfo.map(function (item) {
@@ -24849,10 +24849,43 @@ var About = React.createClass({
 
     return React.createElement(
       'div',
-      null,
-      callName,
-      callSummary,
-      callProjects
+      { className: 'row' },
+      React.createElement(
+        'div',
+        { className: 'col-sm-8' },
+        React.createElement(
+          'div',
+          null,
+          callProjects
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: 'col-sm-4' },
+        React.createElement(
+          'div',
+          null,
+          React.createElement(
+            'h3',
+            null,
+            callName
+          )
+        ),
+        React.createElement(
+          'div',
+          null,
+          React.createElement(
+            'h4',
+            null,
+            'Summary:'
+          ),
+          React.createElement(
+            'p',
+            null,
+            callSummary
+          )
+        )
+      )
     );
   }
 });
@@ -24869,11 +24902,7 @@ var Name = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(
-        'p',
-        null,
-        this.props.name
-      )
+      this.props.name
     );
   }
 });
@@ -24884,21 +24913,21 @@ module.exports = Name;
 var React = require('react');
 
 var Project = React.createClass({
-  displayName: 'Project',
+  displayName: "Project",
 
   render: function () {
     return React.createElement(
-      'div',
-      null,
+      "div",
+      { className: "col-sm-6" },
       React.createElement(
-        'p',
+        "h3",
         null,
         this.props.project.title
       ),
       React.createElement(
-        'p',
-        null,
-        this.props.project.url
+        "a",
+        { href: this.props.project.url },
+        React.createElement("img", { className: "media-object img-responsive", src: this.props.project.file, alt: "..." })
       )
     );
   }
@@ -24942,7 +24971,7 @@ var Summary = React.createClass({
 
   render: function () {
     return React.createElement(
-      'p',
+      'div',
       null,
       this.props.summary
     );
@@ -24953,6 +24982,7 @@ module.exports = Summary;
 
 },{"react":226}],235:[function(require,module,exports){
 var React = require('react');
+var Link = require('react-router');
 
 var Landing = React.createClass({
   displayName: 'Landing',
@@ -24963,15 +24993,90 @@ var Landing = React.createClass({
       'div',
       null,
       React.createElement(
-        'h1',
-        null,
-        'Nav bar here'
-      ),
-      this.props.children,
-      React.createElement(
-        'h3',
-        null,
-        'This shoud be the footer!!!'
+        'div',
+        { className: 'container' },
+        React.createElement(
+          'h1',
+          null,
+          'UEFA Champions League'
+        ),
+        React.createElement(
+          'h4',
+          null,
+          'Top Football Stories'
+        ),
+        React.createElement('br', null),
+        React.createElement(
+          'div',
+          { className: 'row' },
+          React.createElement(
+            'div',
+            { className: 'col-sm-12' },
+            React.createElement('div', { className: 'col-sm-4' }),
+            React.createElement('div', { className: 'col-sm-4' }),
+            React.createElement(
+              'div',
+              { className: 'col-sm-4' },
+              React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                  'div',
+                  { className: 'col-sm-4' },
+                  React.createElement(
+                    'a',
+                    { href: '/#/news' },
+                    React.createElement(
+                      'p',
+                      { className: 'text-right' },
+                      'News'
+                    )
+                  )
+                ),
+                React.createElement(
+                  'div',
+                  { className: 'col-sm-4' },
+                  React.createElement(
+                    'a',
+                    { href: '/#/photos' },
+                    React.createElement(
+                      'p',
+                      { className: 'text-right' },
+                      'Photos'
+                    )
+                  )
+                ),
+                React.createElement(
+                  'div',
+                  { className: 'col-sm-4' },
+                  React.createElement(
+                    'a',
+                    { href: '/#/about' },
+                    React.createElement(
+                      'p',
+                      { className: 'text-right' },
+                      'About'
+                    )
+                  )
+                )
+              )
+            )
+          )
+        ),
+        this.props.children,
+        React.createElement(
+          'div',
+          { 'class': 'panel panel-default' },
+          React.createElement(
+            'div',
+            { 'class': 'panel-footer' },
+            React.createElement(
+              'h3',
+              null,
+              'This shoud be the footer!!!'
+            )
+          )
+        )
       )
     );
   }
@@ -24979,7 +25084,7 @@ var Landing = React.createClass({
 
 module.exports = Landing;
 
-},{"react":226}],236:[function(require,module,exports){
+},{"react":226,"react-router":81}],236:[function(require,module,exports){
 var React = require('react');
 
 //Here is some content about the news. This will display as a paragraph where all the information is displayed in this text. For more information please google the news title. You will find some articles related to this new. Or for a better user experience use Youtube where you will be able to search this title , find a video and play the video for free!. Good luck
@@ -25010,8 +25115,8 @@ var Image = React.createClass({
   render: function () {
     return React.createElement(
       "div",
-      null,
-      React.createElement("img", { src: this.props.image, alt: "" })
+      { className: "col-sm-6" },
+      React.createElement("img", { src: this.props.image, className: "img-responsive", alt: "soccer image" })
     );
   }
 });
@@ -25103,14 +25208,56 @@ var News = React.createClass({
       return React.createElement(ImagesList, { imagesArr: item.images });
     });
 
+    var marginProfileStyle = {
+      marginLeft: 40,
+      marginRight: 40
+    };
+
     return React.createElement(
       'div',
-      null,
-      callTitle,
-      callSubtitle,
-      callContent,
-      callImagesList,
-      callLocation
+      { className: 'media' },
+      React.createElement(
+        'div',
+        { className: 'media-left media-top' },
+        React.createElement(
+          'a',
+          { href: '/#/photos' },
+          React.createElement('img', { style: marginProfileStyle, className: 'media-object', src: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/000/26e/2da/37291da.jpg', alt: '...', height: '80', width: '80' })
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: 'media-body' },
+        React.createElement(
+          'h4',
+          { classN: 'media-heading' },
+          callTitle
+        ),
+        React.createElement(
+          'div',
+          null,
+          callSubtitle
+        ),
+        React.createElement(
+          'div',
+          null,
+          callContent
+        ),
+        React.createElement(
+          'div',
+          null,
+          React.createElement(
+            'div',
+            { className: 'row' },
+            callImagesList
+          )
+        ),
+        React.createElement(
+          'div',
+          null,
+          callLocation
+        )
+      )
     );
   }
 });
@@ -25148,11 +25295,7 @@ var Title = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(
-        'h1',
-        null,
-        this.props.title
-      )
+      this.props.title
     );
   }
 });

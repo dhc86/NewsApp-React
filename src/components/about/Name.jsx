@@ -4,7 +4,7 @@ var Name = React.createClass({
   render: function(){
     return (
       <div>
-        <p>{this.props.name}</p>
+        {this.props.name}
       </div>
     );
   }
