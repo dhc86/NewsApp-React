@@ -25311,8 +25311,10 @@ var Photo = React.createClass({
   render: function () {
     return React.createElement(
       "div",
-      null,
-      React.createElement("img", { src: this.props.url, alt: "" })
+      { className: "col-sm-4" },
+      React.createElement("img", { src: this.props.url, alt: "...", className: "img-responsive" }),
+      React.createElement("br", null),
+      React.createElement("br", null)
     );
   }
 });
@@ -25327,7 +25329,7 @@ var Photos = React.createClass({
   displayName: 'Photos',
 
   render: function () {
-    var images = [{ image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/Comp_Matches/02/35/82/45/2358245_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/General/02/28/03/12/2280312_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/DomesticLeague/02/36/69/05/2366905_w2.jpg" }];
+    var images = [{ image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/Comp_Matches/02/35/82/45/2358245_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/General/02/28/03/12/2280312_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/DomesticLeague/02/36/69/05/2366905_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/Comp_Matches/02/36/01/93/2360193_w2.jpg" }, { image: "http://www.uefa.com/MultimediaFiles/Photo/competitions/General/02/36/78/99/2367899_w2.jpg" }];
 
     var callPhotos = images.map(function (item) {
       return React.createElement(Photo, { url: item.image });
@@ -25335,8 +25337,12 @@ var Photos = React.createClass({
 
     return React.createElement(
       'div',
-      null,
-      callPhotos
+      { className: 'row' },
+      React.createElement(
+        'div',
+        { className: 'col-sm-12' },
+        callPhotos
+      )
     );
   }
 });
